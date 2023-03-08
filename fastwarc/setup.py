@@ -30,6 +30,8 @@ ASAN = bool(int(os.getenv('ASAN', 0)))
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 CXX = distutils.ccompiler.get_default_compiler()
 
+sys.path.insert(0, os.path.join(ROOT_DIR, 'cython_headers'))
+
 # noinspection PyProtectedMember
 warnings.simplefilter('ignore', pyprojecttoml._BetaConfiguration)
 
@@ -96,11 +98,9 @@ def get_ext_modules():
 
 
 # Copy Resiliparse header files
-if os.path.isdir(os.path.join(ROOT_DIR, '..', 'resiliparse', 'resiliparse_inc')):
-    copy_tree(os.path.join(ROOT_DIR, '..', 'resiliparse', 'resiliparse_inc'),
-              os.path.join(ROOT_DIR, 'resiliparse_inc'), update=1)
-    copy_tree(os.path.join(ROOT_DIR, '..', 'resiliparse', 'resiliparse_common'),
-              os.path.join(ROOT_DIR, 'resiliparse_common'), update=1)
+if os.path.isdir(os.path.join(ROOT_DIR, '..', 'resiliparse', 'cython_headers')):
+    copy_tree(os.path.join(ROOT_DIR, '..', 'resiliparse', 'cython_headers'),
+              os.path.join(ROOT_DIR, 'cython_headers'), update=1)
 
 setup(
     ext_modules=get_ext_modules(),

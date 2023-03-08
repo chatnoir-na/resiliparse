@@ -14,7 +14,7 @@
 
 from libcpp.string cimport string
 from libcpp.vector cimport vector
-from resiliparse_inc.uchardet cimport uchardet_t
+from uchardet cimport uchardet_t
 
 cdef class EncodingDetector:
     cdef uchardet_t d

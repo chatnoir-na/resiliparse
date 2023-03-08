@@ -14,14 +14,13 @@
 
 # distutils: language = c++
 
+from cstring cimport strerror
 cimport cython
 from cython.operator cimport preincrement as preinc
+from errno cimport errno
 from libc.string cimport memchr, memcmp, memcpy
 from libcpp.string cimport npos as strnpos, string
-
-from resiliparse_inc.cstring cimport strerror
-from resiliparse_inc.errno cimport errno
-from resiliparse_inc.stdio cimport fclose, ferror, fflush, fopen, fread, fseek, ftell, fwrite, SEEK_SET
+from stdio cimport fclose, ferror, fflush, fopen, fread, fseek, ftell, fwrite, SEEK_SET
 
 import brotli
 

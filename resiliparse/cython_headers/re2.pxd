@@ -3,7 +3,7 @@ from libcpp.map cimport map
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
-from resiliparse_inc.string_view cimport string_view
+from string_view cimport string_view
 
 
 cdef extern from "<re2/stringpiece.h>" namespace "re2" nogil:

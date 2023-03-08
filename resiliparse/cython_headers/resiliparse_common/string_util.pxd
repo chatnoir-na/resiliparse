@@ -17,8 +17,8 @@
 from cython.operator cimport dereference as deref, predecrement as dec, preincrement as inc
 from libc.string cimport memmove
 from libcpp.string cimport string
-from resiliparse_inc.string_view cimport string_view
-from resiliparse_inc.cctype cimport isspace, tolower
+from string_view cimport string_view
+from cctype cimport isspace, tolower
 
 
 cdef inline size_t lstrip_c_str(const char** s_ptr, size_t l) nogil:

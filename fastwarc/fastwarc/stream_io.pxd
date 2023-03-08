@@ -15,10 +15,10 @@
 from libc.stdio cimport FILE
 from libcpp.string cimport string
 
-from resiliparse_inc.zlib cimport *
-from resiliparse_inc.lz4hc cimport *
-from resiliparse_inc.lz4frame cimport *
-from resiliparse_inc.string_view cimport string_view
+from zlib cimport *
+from lz4hc cimport *
+from lz4frame cimport *
+from string_view cimport string_view
 
 
 cdef class IOStream:

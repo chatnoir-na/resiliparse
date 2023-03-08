@@ -32,6 +32,8 @@ ASAN = bool(int(os.getenv('ASAN', 0)))
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 CXX = distutils.ccompiler.get_default_compiler()
 
+sys.path.insert(0, os.path.join(ROOT_DIR, 'cython_headers'))
+
 # noinspection PyProtectedMember
 warnings.simplefilter('ignore', pyprojecttoml._BetaConfiguration)
 
@@ -110,18 +112,26 @@ def get_ext_modules():
 
     return cythonize(resiliparse_extensions, **get_cython_args())
 
+
+def get_rust_extensions():
+    return [
+        # RustExtension('resiliparse.rust_test2', path='resiliparse/rust_test2/Cargo.toml',
+        #               binding=Binding.PyO3, debug=DEBUG)
+    ]
+
+
 # Copy FastWARC headers
 fastwarc_headers = glob.glob(os.path.join(ROOT_DIR, '..', 'fastwarc', 'fastwarc', "*.pxd"))
 if fastwarc_headers:
-    os.makedirs(os.path.join(ROOT_DIR, 'fastwarc'), exist_ok=True)
-    [shutil.copy2(f, os.path.join(ROOT_DIR, 'fastwarc')) for f in fastwarc_headers]
+    os.makedirs(os.path.join(ROOT_DIR, 'cython_headers', 'fastwarc'), exist_ok=True)
+    [shutil.copy2(f, os.path.join(ROOT_DIR, 'cython_headers', 'fastwarc')) for f in fastwarc_headers]
 
 if os.getenv('CARGO_HOME'):
     os.environ['PATH'] = os.pathsep.join([os.path.join(os.getenv('CARGO_HOME'), 'bin'), os.environ['PATH']])
 
 setup(
     ext_modules=get_ext_modules(),
-    rust_extensions=[RustExtension('resiliparse.rust_test', binding=Binding.PyO3)],
+    rust_extensions=get_rust_extensions(),
     cmdclass=dict(build_ext=build_ext),
     exclude_package_data={
         '': [] if 'sdist' in sys.argv else ['*.pxd', '*.pxi', '*.pyx', '*.h', '*.cpp']

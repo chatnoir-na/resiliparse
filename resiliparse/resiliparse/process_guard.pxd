@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from resiliparse_inc.atomic cimport atomic_uint64_t, atomic_bool
-from resiliparse_inc.pthread cimport pthread_t
+from atomic cimport atomic_uint64_t, atomic_bool
+from pthread cimport pthread_t
 
 
 cdef struct GuardContext:

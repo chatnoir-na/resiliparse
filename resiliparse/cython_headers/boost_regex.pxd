@@ -80,7 +80,7 @@ cdef extern from "<boost/regex.hpp>" namespace "boost::regex_constants" nogil:
         format_literal,
         match_not_any
 
-from resiliparse_inc.string_view cimport string_view
+from string_view cimport string_view
 cdef extern from "<boost/regex.hpp>" namespace "boost" nogil:
     cdef cppclass basic_regex[charT]:
         basic_regex()

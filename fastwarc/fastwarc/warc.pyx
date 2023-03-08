@@ -14,12 +14,15 @@
 
 # distutils: language = c++
 
+from cctype cimport isspace
+from cstdlib cimport strtol
 cimport cython
 from cython.operator cimport dereference as deref, preincrement as inc
 from libc.stdint cimport uint16_t
 from libc.string cimport memchr
 from libcpp.string cimport npos as strnpos, string, to_string
 from libcpp.vector cimport vector
+from utility cimport move
 
 import binascii
 import codecs
@@ -32,10 +35,6 @@ import uuid
 import warnings
 
 from resiliparse_common.string_util cimport str_to_lower, strip_str, strip_c_str
-from resiliparse_inc.cctype cimport isspace
-from resiliparse_inc.cstdlib cimport strtol
-from resiliparse_inc.utility cimport move
-
 from fastwarc.stream_io cimport BufferedReader, BytesIOStream, CompressingStream, GZipStream, BrotliStream, \
     IOStream, PythonIOStreamAdapter
 from fastwarc.stream_io import ReaderStaleError

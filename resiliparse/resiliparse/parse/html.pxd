@@ -13,9 +13,9 @@
 # limitations under the License.
 
 from libcpp.string cimport string
-from resiliparse_inc.re2 cimport StringPiece
-from resiliparse_inc.string_view cimport string_view
-from resiliparse_inc.lexbor cimport *
+from re2 cimport StringPiece
+from string_view cimport string_view
+from lexbor cimport *
 
 
 cdef inline bint check_node(DOMNode node) nogil:

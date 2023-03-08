@@ -14,6 +14,7 @@
 
 # distutils: language = c++
 
+from cctype cimport isspace
 from cython.operator cimport dereference as deref, preincrement as preinc, predecrement as predec
 from libcpp.set cimport set as stl_set
 from libc.string cimport memcpy
@@ -21,12 +22,12 @@ from libcpp.memory cimport make_shared, shared_ptr
 from libcpp.string cimport string, to_string
 from libcpp.vector cimport vector
 
+from lexbor cimport *
+from re2 cimport Options as RE2Options, RE2Stack as RE2, StringPiece, PartialMatch
+from utility cimport move
+
 from resiliparse_common.string_util cimport rstrip_str, strip_str, strip_sv
-from resiliparse_inc.cctype cimport isspace
 from resiliparse.parse.html cimport *
-from resiliparse_inc.lexbor cimport *
-from resiliparse_inc.re2 cimport Options as RE2Options, RE2Stack as RE2, StringPiece, PartialMatch
-from resiliparse_inc.utility cimport move
 
 
 cdef extern from * nogil:

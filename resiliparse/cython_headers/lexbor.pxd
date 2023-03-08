@@ -389,7 +389,7 @@ cdef extern from "<lexbor/dom/interfaces/element.h>" nogil:
                                                         const lxb_char_t *html, size_t size)
 
 
-cdef extern from "lexbor/dom/interfaces/document.h" nogil:
+cdef extern from "<lexbor/dom/interfaces/document.h>" nogil:
     lxb_html_document_t * lxb_html_document_destroy(lxb_html_document_t *document)
 
 
